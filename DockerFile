@@ -1,27 +1,17 @@
-# Use official Maven image for building the application
-FROM maven:3.8.4-openjdk-8 AS build
+# Use official Tomcat 8 image
+FROM tomcat:8.5-jdk8
 
+# Set environment variables
+ENV CATALINA_HOME /usr/local/tomcat
 
-# Set the working directory
-WORKDIR /app
+# Remove default webapps (optional, for cleaner deployment)
+RUN rm -rf $CATALINA_HOME/webapps/*
 
-# Copy the project files
-COPY . .
+# Copy your WAR file to Tomcat webapps directory
+COPY target/Project.war $CATALINA_HOME/webapps/ROOT.war
 
-# Build the application
-RUN mvn clean package -DskipTests
-
-# Use a lightweight JDK 8 runtime image
-FROM openjdk:8-jdk-alpine
-
-# Set the working directory
-WORKDIR /app
-
-# Copy the built JAR from the previous stage
-COPY --from=build /app/target/*.jar app.jar
-
-# Expose the application port
+# Expose port 8080
 EXPOSE 8080
 
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Start Tomcat
+CMD ["catalina.sh", "run"]
