@@ -10,6 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New Account</title>
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -123,10 +124,10 @@
                 $('#password').closest('.input-field').find('.error-message').text('Password must be atleast 8 charachters long.');
             }
             const name = $('#name').val();
-            if (name && !/^[a-zA-Z]+$/.test(name)) {
+            if (name && !/^[a-zA-Z\s]+$/.test(name)) {
                 isValid = false;
                 $('#name').addClass('is-invalid');
-                $('#name').closest('.input-field').find('.error-message').text('Name must contain only alphabets.');
+                $('#name').closest('.input-field').find('.error-message').text('Name must contain only alphabets and spaces.');
             }
             const photo = $('#photo').val();
             if(!photo){

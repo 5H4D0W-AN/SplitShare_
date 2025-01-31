@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
     <style>
         /* General Page Styling */
         body {

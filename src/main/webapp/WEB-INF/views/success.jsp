@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Account Created</title>
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
     <style>
         body {
             font-family: Arial, sans-serif;

@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Messenger</title>
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
     <link rel="stylesheet" href="..\..\CSS\chat.css">
     <style>
 
