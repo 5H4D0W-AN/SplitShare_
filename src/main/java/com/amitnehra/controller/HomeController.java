@@ -84,21 +84,21 @@ public class HomeController {
     }
 
 
-    @PostMapping("/posts/{postId}/like")
-    public ResponseEntity<Void> likePost(@PathVariable Long postId, HttpSession session) {
-        Account account = (Account) session.getAttribute("account");
-        if(account == null) return ResponseEntity.notFound().build();
-        postService.likePost(postId, account.getId());
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/{postId}/comment")
-    public ResponseEntity<Void> replyToPost(@PathVariable Long postId, @RequestBody ReplyDto replyDto, HttpSession session) {
-        Account account = (Account) session.getAttribute("account");
-        if(account == null) return ResponseEntity.notFound().build();
-        postService.commentToPost(postId, replyDto, account.getId());
-        return ResponseEntity.ok().build();
-    }
+//    @PostMapping("/posts/{postId}/like")
+//    public ResponseEntity<Void> likePost(@PathVariable Long postId, HttpSession session) {
+//        Account account = (Account) session.getAttribute("account");
+//        if(account == null) return ResponseEntity.notFound().build();
+//        postService.likePost(postId, account.getId());
+//        return ResponseEntity.ok().build();
+//    }
+//
+//    @PostMapping("/{postId}/comment")
+//    public ResponseEntity<Void> replyToPost(@PathVariable Long postId, @RequestBody ReplyDto replyDto, HttpSession session) {
+//        Account account = (Account) session.getAttribute("account");
+//        if(account == null) return ResponseEntity.notFound().build();
+//        postService.commentToPost(postId, replyDto, account.getId());
+//        return ResponseEntity.ok().build();
+//    }
 
 
 }

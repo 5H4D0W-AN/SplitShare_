@@ -1,0 +1,26 @@
+# Use a base image with JDK 1.8
+FROM openjdk:8-jdk-alpine
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the Maven project files
+COPY pom.xml .
+COPY src ./src
+
+# Install Maven (Apache Maven 3.8.8)
+RUN apk add --no-cache curl tar bash && \
+    curl -o apache-maven-3.8.8-bin.tar.gz https://downloads.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz && \
+    tar -xzf apache-maven-3.8.8-bin.tar.gz && \
+    rm apache-maven-3.8.8-bin.tar.gz && \
+    mv apache-maven-3.8.8 /usr/lib/mvn && \
+    ln -s /usr/lib/mvn/bin/mvn /usr/bin/mvn
+
+# Build the application using Maven
+RUN mvn clean package -DskipTests
+
+# Expose the application port
+EXPOSE 8080
+
+# Run the JAR file
+CMD ["java", "-jar", "target/Project.jar"]
