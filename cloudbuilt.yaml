@@ -16,7 +16,6 @@ steps:
     ]
 
 options:
-  serviceAccount: your-service-account@your-project.iam.gserviceaccount.com
   logging: CLOUD_LOGGING_ONLY
 images:
   - 'gcr.io/$PROJECT_ID/my-app:$SHORT_SHA'
