@@ -137,7 +137,7 @@
     <div class="posts-container">
         <c:forEach var="post" items="${posts}">
             <div class="post" onclick="openModal(${post.id})">
-                <img src="data:image/jpeg;base64,${post.photobytes}" alt="Post Photo">
+                <img src="data:image/jpeg;base64,${post.base64photo}" alt="Post Photo">
             </div>
         </c:forEach>
     </div>
@@ -162,41 +162,26 @@
     </div>
 
     <script>
-        function openModal(postId) {
-            // Fetch post details dynamically (using AJAX if needed)
-            const post = ${posts}.find(p => p.id === postId);
-            document.getElementById('modalImage').src = `data:image/jpeg;base64,${post.photobytes}`;
-            document.getElementById('modalLikes').textContent = `${post.likes} Likes`;
+             const posts = [];
 
-            const commentsSection = document.getElementById('modalComments');
-            commentsSection.innerHTML = '';
-            post.comments.forEach(comment => {
-                const p = document.createElement('p');
-                p.innerHTML = `<strong>${comment.accountId}:</strong> ${comment.text}`;
-                commentsSection.appendChild(p);
-            });
-
-            // Show modal
-            document.getElementById('postModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('postModal').style.display = 'none';
-        }
-
-        function submitComment() {
-            const comment = document.getElementById('commentInput').value;
-            // Send the comment to the backend via AJAX (implement this)
-            alert(`Comment submitted: ${comment}`);
-        }
-
-        // Close modal on clicking outside
-        window.onclick = function (event) {
-            const modal = document.getElementById('postModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        };
+            // Loop through the posts and create a JavaScript object for each post
+            <c:forEach var="post" items="${posts}">
+                posts.push({
+                    id: ${post.id},
+                    base64photo: "${post.base64photo}",
+                    likes: ${post.likes},
+                    comments: [
+                        <c:forEach var="comment" items="${post.comments}">
+                            {
+                                accountId: "${comment.accountId}",
+                                text: "${comment.text}"
+                            }
+                            <c:if test="${not empty comment.next}">,</c:if> <!-- Optional comma for separation -->
+                        </c:forEach>
+                    ]
+                });
+            </c:forEach>
     </script>
+    <script src="../../JS/profile.js"></script>
 </body>
 </html>

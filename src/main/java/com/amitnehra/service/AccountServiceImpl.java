@@ -9,10 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 
 @Service
@@ -23,7 +20,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account findUser(String userId) {
-        return accountRepo.findUser(userId);
+        Account account = accountRepo.findUser(userId);
+        account.getProfile().setBase64photo(Base64.getEncoder().encodeToString(account.getProfile().getPhotobytes()));
+        return account;
     }
 
     @Override
@@ -52,7 +51,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<Account> searchProfiles(String query) {
-        return accountRepo.findProfiles(query);
+        List<Account> list = accountRepo.findProfiles(query);
+        for(Account account: list){
+            account.getProfile().setBase64photo(Base64.getEncoder().encodeToString(account.getProfile().getPhotobytes()));
+        }
+        return list;
     }
 
 

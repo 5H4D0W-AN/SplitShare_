@@ -32,6 +32,13 @@
 
     <script>
 
+        window.addEventListener("pageshow", function (event) {
+            if (event.persisted) {
+                location.reload();
+            }
+        });
+
+
         function withdrawRequest(friendId, button) {
             let url = "/withdrawFriendRequest?id="+friendId;
             fetch(url, {

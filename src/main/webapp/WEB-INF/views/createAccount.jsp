@@ -115,7 +115,7 @@
             if (mobile && !/^\d{10}$/.test(mobile)) {
                 isValid = false;
                 $('#mobile').addClass('is-invalid');
-                $('#mobile').closest('.input-field').find('.error-message').text('Mobile number must be 10 digits.');
+                $('#mobile').closest('.input-field').find('.error-message').text('Mobile number must be 10 digits. No initials. We know your Indian ass.');
             }
             const password = $('#password').val();
             if (password && password.length < 8) {
@@ -128,6 +128,12 @@
                 isValid = false;
                 $('#name').addClass('is-invalid');
                 $('#name').closest('.input-field').find('.error-message').text('Name must contain only alphabets and spaces.');
+            }
+            const id = $('#id').val();
+            if (id && !/^[a-zA-Z0-9_\s]+$/.test(id)) {
+                isValid = false;
+                $('#id').addClass('is-invalid');
+                $('#id').closest('.input-field').find('.error-message').text('Id must contain only alphabets, number, and _.');
             }
             const photo = $('#photo').val();
             if(!photo){
@@ -176,6 +182,9 @@
                 <form:password path="password" id="password" placeholder="Enter your Password" required="required"/>
                 <form:errors path="password" cssClass="error-message" />
                 <span class="error-message"></span>
+                <c:if test="${not empty message3}">
+                    <p style="color: red;">${message3}</p>
+                </c:if>
             </div>
 
 
@@ -184,6 +193,9 @@
                 <form:input path="profile.name" id="name" placeholder="Enter your Name" required="required" />
                 <form:errors path="profile.name" cssClass="error-message" />
                 <span class="error-message"></span>
+                <c:if test="${not empty message3}">
+                    <p style="color: red;">${message3}</p>
+                </c:if>
             </div>
 
 
@@ -201,6 +213,10 @@
                 <label for="mobile">Mobile:</label>
                 <form:input path="mobile" id="mobile" placeholder="Enter your Phone Number" />
                 <form:errors path="mobile" cssClass="error-message" />
+                <span class="error-message"></span>
+                <c:if test="${not empty message3}">
+                    <p style="color: red;">${message3}</p>
+                </c:if>
             </div>
 
 
@@ -209,6 +225,9 @@
                 <form:input path="profile.address.city" id="city" placeholder="Enter your City" required="required" />
                 <form:errors path="profile.address.city" cssClass="error-message" />
                 <span class="error-message"></span>
+                <c:if test="${not empty message3}">
+                    <p style="color: red;">${message3}</p>
+                </c:if>
             </div>
 
 

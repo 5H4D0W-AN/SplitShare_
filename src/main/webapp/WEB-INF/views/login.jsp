@@ -159,6 +159,14 @@
     </div>
 
     <script>
+
+
+        window.addEventListener("pageshow", function (event) {
+            if (event.persisted) {
+                location.reload();
+            }
+        });
+
         function validateForm() {
             var userId = document.getElementById("userId").value.trim();
             var password = document.getElementById("password").value.trim();

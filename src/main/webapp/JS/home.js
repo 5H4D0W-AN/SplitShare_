@@ -118,9 +118,10 @@
 
                     data.forEach(account1 => {
                         const li = document.createElement("li");
+                        const imageSrc = `data:image/jpeg;base64,${account1.profile.base64photo}`;
                         li.className = "list-group-item account-banner";
                         li.innerHTML = `
-                            <img src="${account1.profile.photo}" alt="Profile Photo" class="profile-photo-search">
+                            <img src="${imageSrc}" alt="Profile Photo" class="profile-photo-search">
                             <div class="account-info">
                                 <p class="profile-name">${account1.profile.name}</p>
                                 <p class="profile-id">${account1.id}</p>
@@ -167,6 +168,8 @@
                 });
         }
 
+
+/////////////////////////////creating posts/////////////////////////////
 
 
         // Open modals
@@ -499,4 +502,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+
+window.addEventListener("pageshow", function (event) {
+    if (event.persisted) {
+        location.reload();
+    }
+});
 

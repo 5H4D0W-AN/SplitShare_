@@ -14,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
@@ -38,7 +39,7 @@ public class ChatEndPoint {
         System.out.println("Connection opened: " + session.getId());
         clients.put(userId, session);
     }
-
+    @Transactional
     @OnMessage
     public void onMessage(String message, Session session) {
         System.out.println("Received: " + message);

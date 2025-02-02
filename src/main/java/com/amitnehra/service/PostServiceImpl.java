@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,7 @@ public class PostServiceImpl implements PostService{
             post.setComments(commentRepo.getCommentsFor(post.getId()));
             post.setLikes(likeRepo.getLikesFor(post.getId()));
         }
+        list.sort(Comparator.comparing(Post::getDateTime).reversed());
         return list;
     }
 

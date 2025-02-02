@@ -291,7 +291,10 @@
 
     <script>
         const userId = "${sessionScope.account.id}";
-        const socketUrl = "ws://localhost:8085/chat/" + userId;
+
+        const hostname = window.location.hostname;
+        const portno = window.location.port;
+        const socketUrl = "ws://"+hostname+":"+portno+"/chat/" + userId;
         let socket = null;
         let selectedFriendId = null;
         const chatMessages = document.getElementById('chatMessages');
@@ -413,6 +416,8 @@
                     messages.forEach(msg => displayMessage(msg, msg.senderId === userId ? 'sent' : 'received'));
                 })
                 .catch(error => console.error("Error fetching chat history:", error));
+
+            setTimeout(() => messageInput.focus(), 1000);
         }
 
         // Friend Selection
@@ -428,6 +433,15 @@
         window.addEventListener('click', event => {
             if (event.target === modal) modal.style.display = 'none';
         });
+
+        messageInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevents adding a new line
+                sendMessage();
+            }
+        });
+
+
     </script>
 </body>
 </html>

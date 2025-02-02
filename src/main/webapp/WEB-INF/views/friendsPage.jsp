@@ -99,6 +99,12 @@
         }
     </style>
     <script>
+        window.addEventListener("pageshow", function (event) {
+            if (event.persisted) {
+                location.reload();
+            }
+        });
+
         let currentFriendId = null;
 
         function showModal(friendId) {

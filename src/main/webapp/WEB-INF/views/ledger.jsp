@@ -417,11 +417,22 @@
 
 
     <script>
+
+
+        window.addEventListener("pageshow", function (event) {
+            if (event.persisted) {
+                location.reload();
+            }
+        });
+
+
         // Use server-side variables to initialize Vue.js app
         const friendsJson = ${friendsJson};
         const accountJson = ${accountJson};
         const pendingTransactionsJson = ${pendingTransactionsJson};
-        const socketUrl = "ws://localhost:8085/chat/" + accountJson.id;
+        const hostname = window.location.hostname;
+        const portno = window.location.port;
+        const socketUrl = "ws://"+hostname+":"+portno+"/chat/" + userId;
         let socket;
 
         function initSocket() {
