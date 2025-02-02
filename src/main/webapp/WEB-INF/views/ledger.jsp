@@ -432,7 +432,7 @@
         const pendingTransactionsJson = ${pendingTransactionsJson};
         const hostname = window.location.hostname;
         const portno = window.location.port;
-        const socketUrl = "ws://"+hostname+":"+portno+"/chat/" + userId;
+        const socketUrl = "wss://"+hostname+":"+portno+"/chat/" + userId;
         let socket;
 
         function initSocket() {
