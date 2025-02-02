@@ -21,9 +21,9 @@ steps:
     args:
       - run
       - deploy
-      - my-service
+      - ssapp
       - --image=gcr.io/$PROJECT_ID/my-app:latest
-      - --region=us-central1
+      - --region=asia-south2
       - --platform=managed
       - --allow-unauthenticated
       - --quiet  # Avoid interactive prompts
