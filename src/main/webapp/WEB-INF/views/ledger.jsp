@@ -429,6 +429,7 @@
         // Use server-side variables to initialize Vue.js app
         const friendsJson = ${friendsJson};
         const accountJson = ${accountJson};
+        const userId = accountJson.id;
         const pendingTransactionsJson = ${pendingTransactionsJson};
         const hostname = window.location.hostname;
         const portno = window.location.port;
