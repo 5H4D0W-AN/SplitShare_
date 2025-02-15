@@ -130,7 +130,10 @@
         <div class="profile-details">
             <p>@${account.id}</p>
             <h2>${account.profile.name}</h2>
-            <a href="/editProfile" class="edit-profile-link">Edit Profile</a>
+
+            <c:if test="${sessionScope.account.id == account.id}">
+                <a href="/profile/${account.id}/editProfile" class="edit-profile-link">Edit Profile</a>
+            </c:if>
         </div>
     </div>
 
